@@ -46,4 +46,8 @@ public class OutboxEvent
         this.eventType = eventType;
         this.payload = payload;
     }
+
+    public void markPublished() {
+        this.published = true;
+    }
 }

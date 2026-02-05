@@ -32,7 +32,7 @@ public class OutboxPublisher {
                 JobCreatedEvent jobCreatedEvent =
                         objectMapper.readValue(event.getPayload(), JobCreatedEvent.class);
 
-                jobEventPublisher.publishJobCreated(jobCreatedEvent);
+                jobEventPublisher.publishJobCreated(jobCreatedEvent).get();
 
                 event.markPublished();
             }

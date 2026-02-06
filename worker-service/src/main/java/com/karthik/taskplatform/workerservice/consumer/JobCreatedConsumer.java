@@ -11,9 +11,12 @@ public class JobCreatedConsumer {
             topics = "job.created",
             groupId = "worker-service"
     )
-    public void onJobCreated(JobCreatedEvent event) {
+    public void onJobCreated(JobCreatedEvent event) throws InterruptedException {
 
-        System.out.println("Received job event: " + event.getJobId()
-                + " type=" + event.getJobType());
+        System.out.println("Processing job: " + event.getJobId());
+
+        Thread.sleep(2000);
+
+        System.out.println("Finished job: " + event.getJobId());
     }
 }

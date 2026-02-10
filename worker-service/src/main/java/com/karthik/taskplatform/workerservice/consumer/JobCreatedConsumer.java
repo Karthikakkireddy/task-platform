@@ -24,11 +24,14 @@ public class JobCreatedConsumer {
 
         try {
             Thread.sleep(2000);
-            jobServiceClient.updateStatus(event.getJobId(), "COMPLETED");
+
+            jobServiceClient.updateStatus(event.getJobId(), "FINISHED");
             System.out.println("Finished job: " + event.getJobId());
+
         } catch (Exception e) {
+
             jobServiceClient.updateStatus(event.getJobId(), "FAILED");
-            throw new RuntimeException(e);
+            System.out.println("Failed job: " + event.getJobId());
         }
     }
 }

@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.Instant;
+import java.time.OffsetDateTime;
 
 
 @Entity
@@ -56,4 +57,17 @@ public class Job
     {
         this.createdAt = Instant.now();
     }
+
+
+    public void markFinished() {
+        this.status = JobStatus.FINISHED;
+        this.finishedAt = Instant.now();
+    }
+
+    public void markFailed(String reason) {
+        this.status = JobStatus.FAILED;
+        this.failureReason = reason;
+        this.finishedAt = Instant.now();
+    }
+
 }

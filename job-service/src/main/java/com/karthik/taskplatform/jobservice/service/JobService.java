@@ -59,4 +59,17 @@ public class JobService
     public Page<Job> getJobsByStatus(JobStatus status, Pageable pageable) {
         return jobRepository.findByStatus(status, pageable);
     }
+
+
+    @Transactional
+    public void markFinished(Long id) {
+        Job job = jobRepository.findById(id).orElseThrow();
+        job.markFinished();
+    }
+
+    @Transactional
+    public void markFailed(Long id) {
+        Job job = jobRepository.findById(id).orElseThrow();
+        job.markFailed("worker failed");
+    }
 }

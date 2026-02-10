@@ -34,4 +34,14 @@ public class JobController
         return jobService.getJobsByStatus(status, pageable);
     }
 
+    @PostMapping("/{id}/finish")
+    public void finish(@PathVariable Long id) {
+        jobService.markFinished(id);
+    }
+
+    @PostMapping("/{id}/fail")
+    public void fail(@PathVariable Long id) {
+        jobService.markFailed(id);
+    }
+
 }

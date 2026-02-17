@@ -25,6 +25,11 @@ public class JobCreatedConsumer {
         try {
             Thread.sleep(2000);
 
+            // simulate failure for testing
+            if (event.getJobId() % 2 == 0) {
+                throw new RuntimeException("Simulated worker failure");
+            }
+
             jobServiceClient.updateStatus(event.getJobId(), "FINISHED");
             System.out.println("Finished job: " + event.getJobId());
 
